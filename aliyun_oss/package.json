@@ -1,0 +1,19 @@
+{
+  "name": "aliyun-cribl-collector",
+  "version": "0.1.0",
+  "description": "Custom Cribl Stream collector for Alibaba Cloud OSS buckets.",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "lint": "echo 'no lint configured'",
+    "test": "node --test test/*.test.js",
+    "test:cov": "node --test --experimental-test-coverage --test-coverage-lines=85 --test-coverage-functions=85 --test-coverage-branches=85 test/*.test.js"
+  },
+  "dependencies": {
+    "@alicloud/mns": "^1.1.0",
+    "ali-oss": "^6.19.1"
+  },
+  "overrides": {
+    "xml2js": "0.6.2"
+  }
+}

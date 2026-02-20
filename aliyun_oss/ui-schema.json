@@ -1,0 +1,36 @@
+{
+  "type": {
+    "ui:widget": "hidden"
+  },
+  "includeFilters": {
+    "ui:options": {
+      "addable": true,
+      "orderable": true
+    }
+  },
+  "excludeFilters": {
+    "ui:options": {
+      "addable": true,
+      "orderable": true
+    }
+  },
+  "ui:order": [
+    "decompressGzip",
+    "outputFormat",
+    "checkpointKey",
+    "queueName",
+    "queueEndpoint",
+    "queueWaitSeconds",
+    "queueVisibilityTimeout",
+    "queueBatchSize",
+    "queueMaxMessages",
+    "ossEndpoint",
+    "bucket",
+    "accessKeyIdSecretName",
+    "accessKeySecretSecretName",
+    "securityTokenSecretName",
+    "includeFilters",
+    "excludeFilters",
+    "type"
+  ]
+}
