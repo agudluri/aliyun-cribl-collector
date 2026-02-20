@@ -1,0 +1,132 @@
+{
+  "title": "Aliyun OSS Collector",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": ["aliyun_oss"],
+      "default": "aliyun_oss",
+      "options": {
+        "hidden": true
+      }
+    },
+    "decompressGzip": {
+      "type": "boolean",
+      "title": "Decompress Gzip",
+      "description": "Automatically gunzip *.gz objects before splitting into events.",
+      "default": true
+    },
+    "outputFormat": {
+      "type": "string",
+      "title": "Event Output Format",
+      "description": "Emit events as raw lines or wrap them in JSON with metadata.",
+      "enum": ["raw", "json"],
+      "default": "json"
+    },
+    "checkpointKey": {
+      "type": "string",
+      "title": "Checkpoint Namespace",
+      "description": "Optional custom key to namespace checkpoints when the collector is used multiple times.",
+      "default": ""
+    },
+    "queueName": {
+      "type": "string",
+      "title": "SMQ Queue Name",
+      "description": "Aliyun Simple Message Queue (MNS) queue subscribed to the OSS bucket notifications.",
+      "default": ""
+    },
+    "queueEndpoint": {
+      "type": "string",
+      "title": "SMQ Endpoint",
+      "description": "Fully qualified SMQ endpoint URL (for example https://<accountId>.mns.cn-hangzhou.aliyuncs.com).",
+      "default": ""
+    },
+    "queueWaitSeconds": {
+      "type": "integer",
+      "title": "SMQ Wait Seconds",
+      "description": "Long-poll wait seconds per receive request (0-30).",
+      "minimum": 0,
+      "maximum": 30,
+      "default": 20
+    },
+    "queueVisibilityTimeout": {
+      "type": "integer",
+      "title": "SMQ Visibility Timeout",
+      "description": "Optional override for message visibility timeout (seconds) after receive. Set to 0 to use the queue default.",
+      "minimum": 0,
+      "default": 1800
+    },
+    "queueBatchSize": {
+      "type": "integer",
+      "title": "SMQ Batch Size",
+      "description": "Number of queue messages requested per poll (1-16).",
+      "minimum": 1,
+      "maximum": 16,
+      "default": 10
+    },
+    "queueMaxMessages": {
+      "type": "integer",
+      "title": "SMQ Messages per Run",
+      "description": "Stop discovery after receiving this many queue messages during a single run.",
+      "minimum": 1,
+      "default": 100
+    },
+    "ossEndpoint": {
+      "type": "string",
+      "title": "OSS Bucket Endpoint",
+      "description": "Fully qualified OSS bucket endpoint, for example https://oss-cn-shanghai.aliyuncs.com.",
+      "minLength": 5
+    },
+    "bucket": {
+      "type": "string",
+      "title": "OSS Bucket Name",
+      "description": "Name of the OSS bucket to poll for new objects.",
+      "minLength": 3
+    },
+    "accessKeyIdSecretName": {
+      "type": "string",
+      "title": "Access Key ID Secret Name",
+      "description": "Cribl secret name that stores the AccessKeyId.",
+      "default": ""
+    },
+    "accessKeySecretSecretName": {
+      "type": "string",
+      "title": "Access Key Secret Name",
+      "description": "Cribl secret name that stores the AccessKeySecret.",
+      "default": ""
+    },
+    "securityTokenSecretName": {
+      "type": "string",
+      "title": "Security Token Secret Name",
+      "description": "Optional Cribl secret name that stores the STS security token.",
+      "default": ""
+    },
+    "includeFilters": {
+      "type": "array",
+      "title": "Include Filters",
+      "description": "Only collect objects whose key contains at least one of these substrings. Leave empty for no include filtering.",
+      "items": {
+        "type": "string"
+      },
+      "default": []
+    },
+    "excludeFilters": {
+      "type": "array",
+      "title": "Exclude Filters",
+      "description": "Skip objects whose key contains any of these substrings.",
+      "items": {
+        "type": "string"
+      },
+      "default": []
+    }
+  },
+  "required": [
+    "type",
+    "ossEndpoint",
+    "bucket",
+    "accessKeyIdSecretName",
+    "accessKeySecretSecretName",
+    "queueName",
+    "queueEndpoint"
+  ]
+}
